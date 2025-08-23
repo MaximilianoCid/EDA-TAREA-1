@@ -20,7 +20,9 @@ int main(int args, char* vargs[]){
     // mat.setRow(0, x);
     // mat.show();
     // return 0;
-    std::string str_data("/home/jmsaavedrar/Research/git/eda_cpp/clustering/data_eda.npy");
+
+    //debemos cambiar la ruta antes de ejecutar
+    std::string str_data("/home/anto/universidad/estructuraDeDatosYAlgoritmos/tarea1/EDA-TAREA-1/data_eda.npy");
     Matrix mat(str_data);
     const float *row = mat.getRow(999);
     
