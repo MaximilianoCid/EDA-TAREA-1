@@ -1,7 +1,7 @@
 #include "utils.hpp"
 #include "matrix.hpp"
 #include "cluster.hpp"
-
+#include "simsearch.hpp"
 
 
  void print_vector(const std::vector<size_t> &v){
@@ -35,7 +35,6 @@ int main(int args, char* vargs[]){
     std::vector<size_t> inds_1= cluster.getInds(1);
     print_vector(inds_0);
     print_vector(inds_1);
-    
     
     return 0;
 }

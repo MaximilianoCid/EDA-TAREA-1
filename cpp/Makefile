@@ -177,6 +177,30 @@ src/matrix.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/matrix.cpp.s
 .PHONY : src/matrix.cpp.s
 
+src/simsearch.o: src/simsearch.cpp.o
+.PHONY : src/simsearch.o
+
+# target to build an object file
+src/simsearch.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/simsearch.cpp.o
+.PHONY : src/simsearch.cpp.o
+
+src/simsearch.i: src/simsearch.cpp.i
+.PHONY : src/simsearch.i
+
+# target to preprocess a source file
+src/simsearch.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/simsearch.cpp.i
+.PHONY : src/simsearch.cpp.i
+
+src/simsearch.s: src/simsearch.cpp.s
+.PHONY : src/simsearch.s
+
+# target to generate assembly for a file
+src/simsearch.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/simsearch.cpp.s
+.PHONY : src/simsearch.cpp.s
+
 src/utils.o: src/utils.cpp.o
 .PHONY : src/utils.o
 
@@ -240,6 +264,9 @@ help:
 	@echo "... src/matrix.o"
 	@echo "... src/matrix.i"
 	@echo "... src/matrix.s"
+	@echo "... src/simsearch.o"
+	@echo "... src/simsearch.i"
+	@echo "... src/simsearch.s"
 	@echo "... src/utils.o"
 	@echo "... src/utils.i"
 	@echo "... src/utils.s"
