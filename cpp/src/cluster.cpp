@@ -79,7 +79,7 @@ void Cluster::applyClustering(){
     delete[] centroids_1;    
 }
 
-const float* Cluster::getCentroid(size_t i){
+const float* Cluster::getCentroid(size_t i) const{
     return mat_centroids.getRow(i);
 }
 
@@ -96,3 +96,8 @@ Cluster::~Cluster(){
         delete[] inds;           
     }
 }
+
+//Getter de la cantidad de clusters 
+size_t Cluster::getK() const{
+    return k_clusters;
+};

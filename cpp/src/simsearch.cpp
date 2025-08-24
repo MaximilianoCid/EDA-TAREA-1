@@ -46,4 +46,22 @@ std::vector<size_t> SimSearch::search_without(const float *query, size_t top_k){
 //comrpar el query con los k centroides para encontrar el cluster más cercano, buscar datos más cernanos 
 std::vector<size_t> SimSearch::search_with_clusters(const float *query, size_t top_k){
 
+    std::vector<size_t> assign(mat_data.getN(),0);
+
+    for(size_t i = 0;i < mat_data.getN() ; i++ ){
+        const float *x = mat_data.getRow(i);
+        float mejor_dist = std::numeric_limits<float>::infinity();
+        size_t mejor_centroide = 0;
+
+        for(size_t c = 0 ;c < mat_clusters.getK(); c++){
+            const float* cent = mat_clusters.getCentroid(c);
+            float dist = vec_compute_distance(x, cent , mat_data.getDim());
+            if ((dist < mejor_dist))
+        {
+            mejor_dist = dist;
+            mejor_centroide = cent;
+        }
+        }  
+    }
 }
+

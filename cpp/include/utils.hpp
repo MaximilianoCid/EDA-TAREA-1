@@ -17,7 +17,8 @@ float vec_compute_avg_dif(const float *u, const float* v,  size_t dim);
 void print_array(const float *array, size_t d);
 
 //debemos hacer esta función:
-//size_t *argsort(...)
+size_t *argsort(const float* valores,size_t n);
+// se le entrega un arreglo de floats , devuelve un puntero al arreglo dinamico con los indices ordenados 
 
 
 #endif
