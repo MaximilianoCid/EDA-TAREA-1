@@ -1,5 +1,5 @@
 CMakeFiles/test.dir/test.cpp.o: \
- /home/anto/universidad/estructuraDeDatosYAlgoritmos/tarea1/EDA-TAREA-1/cpp/test.cpp \
+ /home/maximiliano-cid/Documentos/EDA/EDA-TAREA-1/cpp/test.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/13/iostream \
  /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
@@ -157,12 +157,12 @@ CMakeFiles/test.dir/test.cpp.o: \
  /usr/include/c++/13/limits /usr/include/c++/13/ctime \
  /usr/include/c++/13/bits/parse_numbers.h /usr/include/c++/13/numeric \
  /usr/include/c++/13/bits/stl_numeric.h \
- /home/anto/universidad/estructuraDeDatosYAlgoritmos/tarea1/EDA-TAREA-1/cpp/include/matrix.hpp \
- /home/anto/universidad/estructuraDeDatosYAlgoritmos/tarea1/EDA-TAREA-1/cpp/include/cluster.hpp \
- /home/anto/universidad/estructuraDeDatosYAlgoritmos/tarea1/EDA-TAREA-1/cpp/include/matrix.hpp \
- /home/anto/universidad/estructuraDeDatosYAlgoritmos/tarea1/EDA-TAREA-1/cpp/include/simsearch.hpp \
- /home/anto/universidad/estructuraDeDatosYAlgoritmos/tarea1/EDA-TAREA-1/cpp/include/cluster.hpp \
- /home/anto/universidad/estructuraDeDatosYAlgoritmos/tarea1/EDA-TAREA-1/cpp/include/utils.hpp \
+ /home/maximiliano-cid/Documentos/EDA/EDA-TAREA-1/cpp/include/matrix.hpp \
+ /home/maximiliano-cid/Documentos/EDA/EDA-TAREA-1/cpp/include/cluster.hpp \
+ /home/maximiliano-cid/Documentos/EDA/EDA-TAREA-1/cpp/include/matrix.hpp \
+ /home/maximiliano-cid/Documentos/EDA/EDA-TAREA-1/cpp/include/simsearch.hpp \
+ /home/maximiliano-cid/Documentos/EDA/EDA-TAREA-1/cpp/include/cluster.hpp \
+ /home/maximiliano-cid/Documentos/EDA/EDA-TAREA-1/cpp/include/utils.hpp \
  /usr/include/c++/13/cmath /usr/include/math.h \
  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \

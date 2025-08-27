@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/maximiliano-cid/Documentos/EDA/EDA-TAREA-1/cpp/include
 
-CXX_FLAGS = -std=gnu++11
+CXX_FLAGS = -O3 -DNDEBUG -std=gnu++11
 

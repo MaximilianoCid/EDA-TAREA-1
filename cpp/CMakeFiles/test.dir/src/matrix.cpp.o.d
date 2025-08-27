@@ -1,7 +1,7 @@
 CMakeFiles/test.dir/src/matrix.cpp.o: \
- /home/anto/universidad/estructuraDeDatosYAlgoritmos/tarea1/EDA-TAREA-1/cpp/src/matrix.cpp \
+ /home/maximiliano-cid/Documentos/EDA/EDA-TAREA-1/cpp/src/matrix.cpp \
  /usr/include/stdc-predef.h \
- /home/anto/universidad/estructuraDeDatosYAlgoritmos/tarea1/EDA-TAREA-1/cpp/include/matrix.hpp \
+ /home/maximiliano-cid/Documentos/EDA/EDA-TAREA-1/cpp/include/matrix.hpp \
  /usr/include/c++/13/iostream /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \

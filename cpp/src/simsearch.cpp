@@ -5,6 +5,7 @@
 #include <vector>
 #include <algorithm>
 #include <utility>
+#include <chrono>
 
 //contructor refencia a la matriz con los datos y matriz con los centroides
 SimSearch::SimSearch(const Matrix &mat_data, const Cluster &mat_clusters)
@@ -25,6 +26,18 @@ std::vector<size_t> SimSearch::search_without(const float *query, size_t top_k){
         //guardo el vector: la dictancia y el indice
         distancias.push_back(distancia_al_query);
     }
+    double total_duration_ms = 0;
+    int m = 8;
+    size_t num_queries = mat_data.getN();
+    for (size_t i = 0; i < num_queries; ++i) {
+            const float* query = mat_data.getRow(i);
+            auto start = std::chrono::high_resolution_clock::now();
+            
+            auto end = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<double, std::milli> duration = end - start;
+            total_duration_ms += duration.count();
+        }
+    std::cout << "Tiempo promedio: " << total_duration_ms << " ms" << std::endl;
 
     //creo un vector para guardar los indices ordenador con la función argsort
     std::vector<size_t> indices_ordenados = argsort(distancias.data(), distancias.size());
