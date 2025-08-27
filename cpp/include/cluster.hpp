@@ -26,7 +26,7 @@ class Cluster{
         //obtener el lugar del centroide
         const float *getCentroid(size_t i) const;
         //obtener lista de puntos de un cluster
-        std::vector<size_t> getInds(size_t i);
+        std::vector<size_t> getInds(size_t i) const;
         void print_clusters() const;
         virtual ~Cluster();
         size_t getK() const;

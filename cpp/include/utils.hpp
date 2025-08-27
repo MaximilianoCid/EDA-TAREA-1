@@ -2,7 +2,7 @@
 #define _UTILS_HPP
 
 #include <cmath>
-#include <vecotr>
+#include <vector>
 //calcula la distancia entre 2 vectores
 //distancia euclidiana
 float vec_compute_distance(const float *u, const float* v, size_t dim);

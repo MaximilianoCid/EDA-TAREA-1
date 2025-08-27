@@ -18,7 +18,7 @@ public:
 
     //busqueda ooptimizada usando clustering 
     //comrpar el query con los k centroides para encontrar el cluster más cercano, buscar datos más cernanos 
-    std::vector<size_t> search_with_clusters(const float *query, size_t  top_k);
+    std::vector<size_t> search_with_clusters(const float *query, size_t  top_k, const Cluster& class_cluster);
 };
 
 #endif 
