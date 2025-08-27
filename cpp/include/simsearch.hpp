@@ -14,10 +14,11 @@ public:
     SimSearch(const Matrix &data, const Cluster &clusters);
     //busqueda por fuerza bruta
     //comparar el query con todos los datos, calcular las distancias, ordenar y obtener los m mejores
-    std::vector<size_t> search_with_clusters(const float *query, size_t  top_k);
+    std::vector<size_t> search_without(const float *query, size_t top_k);
+
     //busqueda ooptimizada usando clustering 
     //comrpar el query con los k centroides para encontrar el cluster más cercano, buscar datos más cernanos 
-    std::vector<size_t> search_without(const float *query, size_t top_k);
+    std::vector<size_t> search_with_clusters(const float *query, size_t  top_k);
 };
 
 #endif 

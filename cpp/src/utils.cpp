@@ -53,7 +53,7 @@ void print_array(const float *array, size_t d){
 }
 
 //implementa argsort
-size_t *argsort(const float* valores, size_t n){
+std::vector<size_t> argsort(const float* valores, size_t n){
     std::vector<size_t> idx(n);
     for(size_t i = 0; i < n; i++){
         idx[i] = i;
@@ -64,8 +64,5 @@ size_t *argsort(const float* valores, size_t n){
         return valores[i1]<valores[i2];
     });
 
-    size_t* resultado = new size_t[n];
-    for(size_t i = 0; i < n; i++){
-        resultado[i] = idx[i];
-    }
+    return idx;
 }

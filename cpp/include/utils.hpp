@@ -2,6 +2,7 @@
 #define _UTILS_HPP
 
 #include <cmath>
+#include <vecotr>
 //calcula la distancia entre 2 vectores
 //distancia euclidiana
 float vec_compute_distance(const float *u, const float* v, size_t dim);
@@ -17,8 +18,6 @@ float vec_compute_avg_dif(const float *u, const float* v,  size_t dim);
 void print_array(const float *array, size_t d);
 
 //debemos hacer esta función:
-size_t *argsort(const float* valores,size_t n);
-// se le entrega un arreglo de floats , devuelve un puntero al arreglo dinamico con los indices ordenados 
-
+std::vector<size_t> argsort(const float* valores, size_t n);
 
 #endif
