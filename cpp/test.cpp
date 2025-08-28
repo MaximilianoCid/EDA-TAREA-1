@@ -12,7 +12,7 @@
 void print_vector(const std::vector<size_t>& v) {
     for (size_t i = 0; i < v.size(); ++i) {
         std::cout << v[i] << (i == v.size() - 1 ? "" : ", ");
-    }
+    }       
     std::cout << std::endl;
 }
 
@@ -68,6 +68,8 @@ int main() {
 
         for (size_t i = 0; i < num_queries; ++i) {
             const float* query = mat_queries.getRow(i);
+
+            bool log = (i==0);
 
             // Ejecutar y medir tiempo de la búsqueda con clusters
             auto start = std::chrono::high_resolution_clock::now();

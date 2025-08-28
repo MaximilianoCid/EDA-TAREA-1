@@ -12,11 +12,14 @@ SimSearch::SimSearch(const Matrix &mat_data, const Cluster &mat_clusters)
     : mat_data(mat_data), mat_clusters(mat_clusters){
 }
 
+   
 //busqueda por fuerza bruta
 //comparar el query con todos los datos, calcular las distancias, ordenar y obtener los k mejores
 std::vector<size_t> SimSearch::search_without(const float *query, size_t top_k){
     //vector donde guardar la distancia del dato al query con el indice
     std::vector<float> distancias;
+
+       auto t0 = std::chrono::high_resolution_clock::now();
 
     //para cada dato, obtener la distancia al query y guardar el vector
     //recorro la matriz con todos los datos
@@ -26,7 +29,29 @@ std::vector<size_t> SimSearch::search_without(const float *query, size_t top_k){
         //guardo el vector: la dictancia y el indice
         distancias.push_back(distancia_al_query);
     }
-    double total_duration_ms = 0;
+    
+    auto t1 = std::chrono::high_resolution_clock::now(); 
+    std::chrono::duration<double,std::milli> dist_time = t1 - t0;
+
+
+    auto t2 = std::chrono::high_resolution_clock::now();
+    auto t3 = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double,std::milli> sort_time = t3 - t2;
+
+    static bool impreso_con = false; 
+
+     if (!impreso_con) {
+        std::cout << " Tiempo distancias (sin ordenar): " 
+                  << dist_time.count() << " ms\n";
+        impreso_con = true;
+    }
+
+      
+
+    //ahora ordenar las distancias (fuera del tiempo medido)
+    std::vector<size_t> indices_ordenados = argsort(distancias.data(), distancias.size());
+
+   /* double total_duration_ms = 0;
     int m = 8;
     size_t num_queries = mat_data.getN();
     for (size_t i = 0; i < num_queries; ++i) {
@@ -40,7 +65,7 @@ std::vector<size_t> SimSearch::search_without(const float *query, size_t top_k){
     std::cout << "Tiempo promedio: " << total_duration_ms << " ms" << std::endl;
 
     //creo un vector para guardar los indices ordenador con la función argsort
-    std::vector<size_t> indices_ordenados = argsort(distancias.data(), distancias.size());
+    std::vector<size_t> indices_ordenados = argsort(distancias.data(), distancias.size()); */
 
     //se entregan los k mejores
     if (indices_ordenados.size() > top_k) {
@@ -59,11 +84,30 @@ std::vector<size_t> SimSearch::search_with_clusters(const float *query, size_t t
     //calculo las distancias del centro del cluster al query, para cada cluster y lo guardo
     std::vector<float> distancia_cluster;
     size_t k_clusters = class_cluster.getK();
+
+    auto start_calc = std::chrono::high_resolution_clock::now();
+
     for(int i = 0; i< k_clusters; i++){
         const float* centroide_cluster = class_cluster.getCentroid(i);
         float distancia_cluster_query = vec_compute_distance(query, centroide_cluster, mat_data.getDim());
         distancia_cluster.push_back(distancia_cluster_query);
     }
+
+    auto end_calc = std::chrono::high_resolution_clock::now();     
+    std::chrono::duration<double, std::milli> duration_calc = end_calc - start_calc;
+
+    static size_t ks = std::numeric_limits<size_t>::max();
+
+    if (ks != k_clusters) {
+    // usa tu formato actual de impresión (elige uno):
+    // Opción A: tu formato compacto actual
+    std::cout << "Tiempo (sin ordenar) " << (duration_calc.count() / static_cast<double>(k_clusters))
+              << " ms:\n";
+   ks = k_clusters;
+    }
+
+
+    
     //ordeno de menor distancia a mayor:
     std::vector<size_t> indices_cluster_ordenados = argsort(distancia_cluster.data(), distancia_cluster.size());
 
@@ -99,8 +143,8 @@ std::vector<size_t> SimSearch::search_with_clusters(const float *query, size_t t
     }
 
     return resultado_final;
-}
 
+}
 
 
 

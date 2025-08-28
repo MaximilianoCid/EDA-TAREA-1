@@ -1,3 +1,0 @@
-/home/maximiliano-cid/Documentos/EDA/EDA-TAREA-1/cpp/build/CMakeFiles/test.dir
-/home/maximiliano-cid/Documentos/EDA/EDA-TAREA-1/cpp/build/CMakeFiles/edit_cache.dir
-/home/maximiliano-cid/Documentos/EDA/EDA-TAREA-1/cpp/build/CMakeFiles/rebuild_cache.dir
