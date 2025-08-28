@@ -1,84 +1,67 @@
 #include <iostream>
 #include <vector>
-#include <chrono> // Para medir el tiempo
-#include <numeric> // Para std::accumulate
+#include <chrono>
+#include <numeric>
+#include <cmath> // Para std::abs
 
 #include "matrix.hpp"
 #include "cluster.hpp"
 #include "simsearch.hpp"
 #include "utils.hpp"
 
-// Función para imprimir un vector de resultados
 void print_vector(const std::vector<size_t>& v) {
     for (size_t i = 0; i < v.size(); ++i) {
         std::cout << v[i] << (i == v.size() - 1 ? "" : ", ");
-    }       
+    }
     std::cout << std::endl;
 }
 
 int main() {
-    // --- 1. CARGAR DATOS ---
-    std::cout << "Cargando datos..." << std::endl;
-    Matrix mat_data("/home/maximiliano-cid/Documentos/EDA/EDA-TAREA-1/data_eda.npy");
-    Matrix mat_queries("/home/maximiliano-cid/Documentos/EDA/EDA-TAREA-1/queries_eda.npy");
-    std::cout << "Datos cargados." << std::endl << std::endl;
-
-    size_t m = 64; // Los 'm' vecinos más cercanos a buscar
+    //Cambiar rutas: 
+    Matrix mat_data("/home/anto/universidad/estructuraDeDatosYAlgoritmos/tarea1/EDA-TAREA-1/data_eda.npy");
+    Matrix mat_queries("/home/anto/universidad/estructuraDeDatosYAlgoritmos/tarea1/EDA-TAREA-1/queries_eda.npy");
+    //cambiamos m para cada tabla
+    size_t m = 8;
     size_t num_queries = mat_queries.getN();
 
-    // --- 2. PRUEBA DE FUERZA BRUTA (SIN CLUSTERS) ---
-    std::cout << "--- Ejecutando Búsqueda de Fuerza Bruta (Baseline) ---" << std::endl;
+    std::cout << "Fuerza Bruta:" << std::endl;
     {
-        // Creamos un objeto Cluster y SimSearch "vacío" solo para poder llamar al método
         Cluster dummy_cluster(mat_data, 1);
         SimSearch buscador(mat_data, dummy_cluster);
-        
         double total_duration_ms = 0;
-
+        //search_without para cada consulta
         for (size_t i = 0; i < num_queries; ++i) {
             const float* query = mat_queries.getRow(i);
-            
             auto start = std::chrono::high_resolution_clock::now();
+            //ejecuta search_without
             buscador.search_without(query, m);
             auto end = std::chrono::high_resolution_clock::now();
-            
             std::chrono::duration<double, std::milli> duration = end - start;
             total_duration_ms += duration.count();
         }
+        //entrega la info para hacer la tablita
         std::cout << "k-clusters: 0 (no clusters)" << std::endl;
         std::cout << "Tiempo promedio: " << total_duration_ms / num_queries << " ms" << std::endl;
         std::cout << "Error promedio: 0.0" << std::endl << std::endl;
     }
-
-
-    // --- 3. PRUEBA CON CLUSTERS ---
+    //para cada clusters
     std::vector<size_t> k_values = {8, 16, 32, 64, 128};
-
+    //para cada clusters
     for (size_t k : k_values) {
-        std::cout << "--- Probando con k = " << k << " ---" << std::endl;
-
-        // Construir los clusters para este valor de 'k'
+        std::cout << "k = " << k  << std::endl;
         Cluster cluster_obj(mat_data, k);
         cluster_obj.applyClustering();
-        
         SimSearch buscador(mat_data, cluster_obj);
-
         double total_duration_ms = 0;
         double total_error = 0;
-
+        //search_with_clusters para cada consulta
         for (size_t i = 0; i < num_queries; ++i) {
             const float* query = mat_queries.getRow(i);
-
-            bool log = (i==0);
-
-            // Ejecutar y medir tiempo de la búsqueda con clusters
             auto start = std::chrono::high_resolution_clock::now();
-            std::vector<size_t> results_cluster = buscador.search_with_clusters(query, m, cluster_obj);
+            std::vector<size_t> results_cluster = buscador.search_with_clusters(query, m);
             auto end = std::chrono::high_resolution_clock::now();
             std::chrono::duration<double, std::milli> duration = end - start;
             total_duration_ms += duration.count();
-            
-            // Calcular el error comparando con la búsqueda de fuerza bruta
             std::vector<size_t> results_truth = buscador.search_without(query, m);
             double query_error = 0;
             for(size_t j = 0; j < m; ++j){
@@ -88,11 +71,10 @@ int main() {
             }
             total_error += (query_error / m);
         }
-
+        //entrega la info para hacer la tablita
         std::cout << "k-clusters: " << k << std::endl;
         std::cout << "Tiempo promedio: " << total_duration_ms / num_queries << " ms" << std::endl;
         std::cout << "Error promedio: " << total_error / num_queries << std::endl << std::endl;
     }
-
     return 0;
 }
